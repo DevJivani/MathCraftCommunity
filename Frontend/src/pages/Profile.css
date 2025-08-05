@@ -169,3 +169,20 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  .edit-profile-button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loading, .error {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #7f8c8d;
+    margin-top: 50px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
