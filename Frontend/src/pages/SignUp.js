@@ -194,6 +194,70 @@ const SignUp = () => {
   return (
     <div style={styles.container}>
       <canvas ref={canvasRef} style={styles.canvas}></canvas>
+      <div style={styles.content}>
+        <form ref={formRef} onSubmit={handleSubmit} style={styles.form}>
+          <h2 style={styles.title}>Sign Up</h2>
+          <div style={styles.photoContainer} onClick={handlePhotoClick}>
+            {previewPhoto ? (
+              <img src={previewPhoto} alt="Profile" style={styles.photoPreview} />
+            ) : (
+              <div style={styles.photoPlaceholder}>
+                <span style={styles.photoPlaceholderText}>Add Photo</span>
+              </div>
+            )}
+          </div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            onChange={handleImageUpload}
+            accept="image/*"
+            style={styles.hiddenFileInput}
+          />
+          <div style={styles.inputGroup}>
+            <label htmlFor="username" style={styles.label}>Username</label>
+            <input
+              id="username"
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              style={styles.input}
+              required
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="email" style={styles.label}>Email</label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={styles.input}
+              required
+            />
+          </div>
+          <div style={styles.inputGroup}>
+            <label htmlFor="password" style={styles.label}>Password</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={styles.input}
+              required
+            />
+          </div>
+          {/* Full name removed from signup form */}
+          <button type="submit" style={styles.button} disabled={isLoading}>
+            {isLoading ? 'Signing up...' : 'Sign Up'}
+          </button>
+          <div style={styles.links}>
+            <Link to="/login" style={styles.link}>Already have an account? Login</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
