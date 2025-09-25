@@ -30,6 +30,36 @@ const PracticeCanvasPage = () => {
   return (
     <div className="answer-page">
       <Navbar />
+      <div className="container">
+        <h1 className="question-title">Practice Canvas</h1>
+        {loading ? (
+          <div>Loading...</div>
+        ) : error ? (
+          <div className="error-message">{error}</div>
+        ) : (
+          <div className="practice-container">
+            <div className="question-preview">
+              <button
+                type="button"
+                className="back-btn"
+                onClick={() => navigate(`/answer/${questionId}`)}
+                aria-label="Back to answers"
+              >
+                ← Back to Answers
+              </button>
+              <div className="question-card" style={{ cursor: 'pointer' }} onClick={() => navigate(`/answer/${questionId}`)}>
+                <h3 style={{ marginTop: 8 }}>{question.title || 'Question'}</h3>
+                <p>{question.question || ''}</p>
+                {question.category && <p>Category: {question.category}</p>}
+              </div>
+            </div>
+            <div className="practice-canvas-section">
+              <h2>Your Workspace</h2>
+              <DrawingCanvas />
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
