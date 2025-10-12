@@ -26,45 +26,9 @@ const Answer = () => {
     fetchCurrentUser(); // Fetch the current user when the component mounts
   }, [questionId]);
 
-  const fetchCurrentUser = async () => {
-    try {
-      const response = await fetch(`${baseUrl}/api/user/current`, {
-        credentials: 'include',
-      });
-      const data = await response.json();
-      setCurrentUser(data.user); // Save the current user
-    } catch (err) {
-      setError(`Failed to load user: ${err.message}`);
-    }
-  };
+ 
 
-  const fetchQuestionAndAnswers = async () => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(`${baseUrl}/api/answer/${questionId}`, {
-        method: 'GET',
-        credentials: 'include',
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setQuestion(data.question || null);
-        setAnswers(data.answers || []);
-        
-        const newComments = {};
-        for (const answer of data.answers) {
-          const answerComments = await fetchCommentsForAnswer(answer.answerId);
-          newComments[answer.answerId] = answerComments;
-        }
-        setComments(newComments);
-      } else {
-        throw new Error(data.message || 'Failed to fetch question and answers');
-      }
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+
 
   const handleDeleteAnswer = (answerId) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this answer?');
